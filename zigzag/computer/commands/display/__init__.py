@@ -232,12 +232,10 @@ class Display:
     def point_to_text(self, query: str, icon: bool = False):
         base64_image = self.screenshot()
         url = f"{self.computer.oi_base_url}/point/{'' if icon is True else 'text/'}"
-        print(f"url: {url}")
         data = requests.post(
             url,
             json={"base64": base64_image, "query": query},
         ).json()
-        print(f"data: {data}")
         if len(data) == 0:
             print(f"Query '{query}' not found in the image.")
             return False
